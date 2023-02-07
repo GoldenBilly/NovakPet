@@ -5,26 +5,24 @@ using UnityEngine.UI;
 namespace Novak
 {
     [RequireComponent(typeof(Text))]
-    public class Score : MonoBehaviour
+    public class Score : MonoBehaviour, IScore
     {
-        [SerializeField] private long _score;
+        [SerializeField] private ScoreBehaviour _score;
         [SerializeField] private Text _textScore;
-        public long GetScore { get => _score; }
+        public ScoreBehaviour GetScoreBehaviour { get => _score; }
 
-        public Score(Text textScore)
-        {
-            _textScore = textScore;
-        }
-
-        public void AddScore(UInt64 score)
-        {
-            _score += (long)score;
-            _textScore.text = $"{_score}";
-        }
-
-        public void Start()
+        private void Start()
         {
             _textScore = GetComponent<Text>();
+            _score = new ScoreBehaviour();
+            _score.OnScoreUpdate += OnUpdateScore;
         }
+
+        private void OnUpdateScore(uint addedScore)
+        {
+            _textScore.text = $"{_score.GetScore}";
+        }
+
+        public void AddScore(uint score) => _score.AddScore(score);
     }
 }

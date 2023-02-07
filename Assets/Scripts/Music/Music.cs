@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Novak
 {
     [RequireComponent(typeof(AudioSource))]
-    public class MusicBehaviour : MonoBehaviour
+    public class Music : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Slider _slider;

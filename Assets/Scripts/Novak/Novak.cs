@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 namespace Novak
 {
@@ -11,7 +12,7 @@ namespace Novak
     {
         [SerializeField] private Score _score;
         [SerializeField] private NovakBehaviour _novakBehaviour;
-        public event OnUpdateDelegate OnUpdate;
+        public event OnUpdateDelegate OnGUIUpdate;
 
         private void Start()
         {
@@ -27,7 +28,7 @@ namespace Novak
         
         private void OnGUI()
         {
-            OnUpdate?.Invoke();
+            OnGUIUpdate?.Invoke();
             if (Input.GetKey(KeyCode.Escape))
                 Application.Quit();
         }

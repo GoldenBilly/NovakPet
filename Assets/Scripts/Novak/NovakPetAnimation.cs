@@ -12,7 +12,7 @@ namespace Novak
         public NovakPetAnimation(Animator animator, Novak novak)
         {
             _animator = animator;
-            novak.OnUpdate += Update;
+            novak.OnGUIUpdate += Update;
         }
 
         public bool TryPet()
